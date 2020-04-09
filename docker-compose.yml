@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  redis:
+    container_name: redis
+    image: redis
+    ports: 
+      - "6379:6379"
+  mongo:
+    container_name: mongodb
+    image: mongo
+    ports: 
+      - "27017:27017"
+  app:
+    container_name: projectaname
+    # image: projecta:v2.0
+
+    # Thay vì chạy từ image, ta có thể cấu hình build image từ Dockerfile
+    # context là đường dẫn từ điểm gõ lệnh docker-compose up
+    build:
+      context: .
+      dockerfile: ./cmd/projectA/Dockerfile
+      # args: 
+      #   - buildno=1
+    restart: always
